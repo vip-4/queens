@@ -1,0 +1,42 @@
+# Queens 皇后
+
+> 免費開源的 crown-placement 邏輯益智遊戲：在彩色區域盤面放置皇后，滿足「每列、每行、每個彩色區域各恰好一顆，且皇后互不相鄰（含斜角）」四項條件。150+ 結構化關卡（5×5 到 16×16）與程序生成無限關卡（5×5–9×9）。Flutter / WebAssembly 網頁版，免註冊、免下載、100% 離線、無廣告、無追蹤，採 GPL-3.0 授權。
+
+正式網址：https://vip-4.github.io/queens/
+原始碼：https://github.com/sidhant947/Queens
+手機版：Google Play（com.sidhant.queens）／F-Droid
+
+## 概述
+
+Queens 是一款 crown-placement 邏輯益智遊戲，玩法靈感來自 LinkedIn Queens。盤面由多個彩色區域組成，玩家需在格子中放置皇后，同時滿足四項條件。難度隨盤面大小與區域切分而變化。
+
+本頁為該 GPL-3.0 開源專案的網頁發行頁，遊戲以 Flutter 編譯為 WebAssembly，於瀏覽器內執行，不需安裝或註冊。
+
+## 玩法
+
+1. 點選盤面格子以放置或移除皇后。
+2. 確保每列、每行、每個彩色區域各恰好一顆皇后。
+3. 確認任意兩顆皇后不相鄰（含斜角）。
+4. 滿足全部條件即過關，進入下一關。
+
+## 特色
+
+- 150+ 結構化關卡，從 5×5 到 16×16
+- 程序生成無限關卡（5×5–9×9），無關卡上限
+- 100% 離線，不需要網路
+- 無廣告、無追蹤、無分析、免多餘權限
+- 跨平台：網頁版（WebAssembly）、Android（Google Play / F-Droid）
+- 開源 GPL-3.0，原始碼可驗證
+
+## 技術說明
+
+- 語言／框架：Dart / Flutter 3.50（Dart 3.14）
+- 狀態管理：Riverpod；本地儲存：Hive
+- 編譯：flutter build web（dart2js + CanvasKit）
+- 執行環境：任何支援 WebAssembly 與 Canvas 的現代瀏覽器
+
+## 開源與授權
+
+- 原作者：sidhant947
+- 授權：GNU GPL v3.0
+- 原始碼：https://github.com/sidhant947/Queens
