@@ -1,0 +1,24 @@
+{
+  "name": "Queens 皇后",
+  "short_name": "Queens",
+  "description": "免費開源的皇后的 crown-placement 邏輯益智遊戲：在彩色區域盤面放置皇后，滿足行列區域與不相鄰規則。",
+  "lang": "zh-Hant",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#0b1021",
+  "theme_color": "#0b1021",
+  "icons": [
+    {
+      "src": "play/icons/Icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "play/icons/Icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
