@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0b1021">
+  <meta name="color-scheme" content="dark">
+  <title>Queens 皇后｜免費開源 crown-placement 邏輯益智遊戲（Flutter 網頁版）</title>
+  <meta name="description" content="Queens 皇后：在彩色區域盤面放置皇后，滿足「每列、每行、每色各恰好一顆，且皇后互不相鄰（含斜角）」的 crown-placement 邏輯益智遊戲。150+ 關卡、5×5 到 16×16、程序生成無限關卡，免費、無廣告、無追蹤、100% 離線。Flutter / WebAssembly 網頁版，GPL-3.0 授權。">
+  <meta name="keywords" content="Queens, 皇后, crown placement, 邏輯益智遊戲, 益智遊戲, LinkedIn Queens, 彩色區域, Flutter 網頁版, WebAssembly, 開源遊戲, GPL-3.0, 免廣告, 離線遊戲">
+  <meta name="author" content="sidhant947">
+  <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  <meta name="googlebot" content="index, follow">
+  <link rel="canonical" href="https://vip-4.github.io/queens/">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700&display=swap">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Queens 皇后">
+  <meta property="og:locale" content="zh_TW">
+  <meta property="og:title" content="Queens 皇后｜免費開源 crown-placement 邏輯益智遊戲">
+  <meta property="og:description" content="在彩色區域盤面放置皇后，滿足行列區域與不相鄰規則。150+ 關卡、無限程序生成、免廣告、無追蹤、100% 離線。">
+  <meta property="og:url" content="https://vip-4.github.io/queens/">
+  <meta property="og:image" content="https://vip-4.github.io/queens/og-image.png">
+  <meta property="og:image:secure_url" content="https://vip-4.github.io/queens/og-image.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Queens 皇后遊戲示意：彩色區域盤面與皇冠圖示">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Queens 皇后｜免費開源 crown-placement 邏輯益智遊戲">
+  <meta name="twitter:description" content="在彩色區域盤面放置皇后，滿足行列區域與不相鄰規則。150+ 關卡、無限程序生成、免廣告、無追蹤、100% 離線。">
+  <meta name="twitter:image" content="https://vip-4.github.io/queens/og-image.png">
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://vip-4.github.io/queens/#website",
+    "url": "https://vip-4.github.io/queens/",
+    "name": "Queens 皇后",
+    "description": "免費開源的 crown-placement 邏輯益智遊戲網頁版。",
+    "inLanguage": "zh-Hant",
+    "datePublished": "2026-11-24"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "@id": "https://vip-4.github.io/queens/#app",
+    "name": "Queens 皇后",
+    "applicationCategory": "GameApplication",
+    "operatingSystem": "任何支援 WebAssembly 的現代瀏覽器",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "author": { "@type": "Person", "name": "sidhant947" },
+    "license": "https://www.gnu.org/licenses/gpl-3.0.html",
+    "description": "在彩色區域盤面放置皇后，滿足每列、每行、每色各一顆且皇后互不相鄰的 crown-placement 邏輯益智遊戲。"
+  }
+  </script>
+
+  <style>
+    :root { --bg:#0b1021; --card:#131a33; --gold:#fbbf24; --text:#e8ecf8; --muted:#a9b4d0; --indigo:#6366f1; --green:#34d399; }
+    * { box-sizing: border-box; }
+    html, body { margin:0; padding:0; background:var(--bg); color:var(--text); font-family: "Noto Sans TC", system-ui, -apple-system, sans-serif; line-height:1.6; }
+    a { color:var(--gold); text-decoration:none; }
+    a:hover { text-decoration:underline; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 0 1.25rem; }
+    header.site { padding: 1.5rem 0; border-bottom: 1px solid rgba(255,255,255,.08); }
+    header.site h1 { margin:.25rem 0; font-size: 2rem; }
+    header.site p.tag { color:var(--muted); margin:0; }
+    .hero { display:grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; padding: 2rem 0; align-items: center; }
+    @media (max-width: 800px) { .hero { grid-template-columns: 1fr; } }
+    .hero .intro h2 { font-size: 1.6rem; margin:0 0 .5rem; }
+    .hero .intro p { color:var(--muted); }
+    .badges { display:flex; flex-wrap:wrap; gap:.5rem; margin:1rem 0; }
+    .badge { background:rgba(99,102,241,.15); border:1px solid rgba(99,102,241,.4); color:var(--text); padding:.25rem .6rem; border-radius:999px; font-size:.85rem; }
+    .cta { display:inline-block; background:var(--gold); color:#1a1a1a; padding:.7rem 1.4rem; border-radius:8px; font-weight:700; margin-top:.5rem; }
+    .cta:hover { filter:brightness(1.1); text-decoration:none; }
+    .frame-wrap { background:var(--card); border:1px solid rgba(255,255,255,.08); border-radius:12px; overflow:hidden; aspect-ratio: 4/3; }
+    .frame-wrap iframe { width:100%; height:100%; border:0; }
+    section { padding: 2rem 0; border-top: 1px solid rgba(255,255,255,.06); }
+    section h2 { font-size: 1.4rem; margin:0 0 1rem; }
+    section h3 { font-size: 1.1rem; margin:1.25rem 0 .5rem; color:var(--gold); }
+    .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:1rem; }
+    .card { background:var(--card); border:1px solid rgba(255,255,255,.08); border-radius:10px; padding:1rem; }
+    .card h3 { margin:0 0 .4rem; color:var(--gold); font-size:1rem; }
+    .card p { margin:0; color:var(--muted); font-size:.9rem; }
+    .rules { background:var(--card); border:1px solid rgba(255,255,255,.08); border-radius:10px; padding:1rem 1.25rem; }
+    .rules ol { margin:.5rem 0 0 1.25rem; }
+    .rules li { margin:.35rem 0; }
+    .source-note { color:var(--muted); font-size:.85rem; margin-top:1rem; }
+    footer { padding:2rem 0; color:var(--muted); font-size:.85rem; border-top:1px solid rgba(255,255,255,.06); }
+  </style>
+</head>
+<body>
+  <header class="site">
+    <div class="wrap">
+      <h1>Queens 皇后</h1>
+      <p class="tag">免費開源的 crown-placement 邏輯益智遊戲｜Flutter / WebAssembly 網頁版｜GPL-3.0</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <div class="intro">
+        <h2>在彩色區域盤面放置皇后</h2>
+        <p>Queens 是一款規則簡單但耐玩的邏輯益智遊戲：在彩色區域盤面中放置皇后，使「每列、每行、每個彩色區域各恰好一顆，且任意兩顆皇后互不相鄰（含斜角）」四項條件同時成立。</p>
+        <div class="badges">
+          <span class="badge">🚫 無廣告</span>
+          <span class="badge">🔒 無追蹤</span>
+          <span class="badge">♾️ 150+ 關卡</span>
+          <span class="badge">📶 100% 離線</span>
+          <span class="badge">🆓 開源 GPL-3.0</span>
+        </div>
+        <a class="cta" href="#play">立即遊玩 →</a>
+      </div>
+      <div class="frame-wrap" id="play">
+        <iframe src="play/index.html" title="Queens 皇后遊戲" loading="lazy" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <section id="about">
+      <h2>關於 Queens</h2>
+      <p>Queens 的玩法靈感來自 LinkedIn Queens。盤面由多個彩色區域組成，玩家需在格子中放置皇冠（皇后），同時滿足：</p>
+      <div class="rules">
+        <ol>
+          <li>每列恰好放置一顆皇后。</li>
+          <li>每行恰好放置一顆皇后。</li>
+          <li>每個彩色區域恰好放置一顆皇后。</li>
+          <li>任意兩顆皇后不可相鄰，包含水平、垂直與斜角（八方向）。</li>
+        </ol>
+      </div>
+      <p style="margin-top:1rem">難度隨盤面大小與區域切分而變化。提供 150+ 結構化關卡，從 5×5 一路擴展到 16×16，另有程序生成的 5×5 至 9×9 無限關卡，可無限遊玩。</p>
+    </section>
+
+    <section id="features">
+      <h2>特色</h2>
+      <div class="grid">
+        <div class="card"><h3>🚫 無廣告</h3><p>無橫幅、無插頁、無獎勵影片。純淨遊玩體驗。</p></div>
+        <div class="card"><h3>🔒 無追蹤</h3><p>無分析、無資料收集、無任何追蹤。你的遊玩紀錄只屬於你。</p></div>
+        <div class="card"><h3>♾️ 無限關卡</h3><p>程序生成隨機盤面（5×5–9×9），加上 150+ 結構化關卡，最大 16×16。</p></div>
+        <div class="card"><h3">📶 完全離線</h3><p>不需網路權限。進度以 Hive 本地儲存，隨時隨地遊玩。</p></div>
+        <div class="card"><h3>🆓 開源 GPL-3.0</h3><p>原始碼公開可查，採 GNU GPL v3 授權，可自由檢視與改作。</p></div>
+        <div class="card"><h3>⚡ Flutter / WASM</h3><p>以 Flutter 編譯為 WebAssembly，於瀏覽器內執行，免安裝、免註冊。</p></div>
+      </div>
+    </section>
+
+    <section id="howto">
+      <h2>如何遊玩</h2>
+      <ol>
+        <li>點選盤面格子以放置或移除皇后。</li>
+        <li>確保每列、每行、每個彩色區域各恰好一顆皇后。</li>
+        <li>確認任意兩顆皇后不相鄰（含斜角）。</li>
+        <li>滿足全部條件即過關，進入下一關。</li>
+      </ol>
+      <p class="source-note">提示：先從小盤面（5×5）練習，熟悉區域切分與相鄰規則，再挑戰 16×16 大盤面。</p>
+    </section>
+
+    <section id="source">
+      <h2>開源來源與授權</h2>
+      <p>本頁為 sidhant947/Queens 的網頁發行版。遊戲以 Flutter 開發、編譯為 WebAssembly，採 GPL-3.0 授權。原始碼與 Android 版本請見原始倉庫。</p>
+      <ul>
+        <li>原始倉庫：<a href="https://github.com/sidhant947/Queens" rel="noopener noreferrer">github.com/sidhant947/Queens</a></li>
+        <li>授權：GNU GPL v3.0</li>
+        <li>技術：Dart / Flutter 3.50、Riverpod 狀態管理、Hive 本地儲存</li>
+        <li>平台：網頁版（WebAssembly）、Android（Google Play / F-Droid）</li>
+      </ul>
+      <p class="source-note">本頁僅提供連結與署名，未修改遊戲內容。本站未使用任何外部專案的原始碼、貼圖或音訊。</p>
+    </section>
+
+    <section id="faq">
+      <h2>常見問題</h2>
+      <details>
+        <summary>Queens 是什麼遊戲？</summary>
+        <p>Queens 是一款 crown-placement 邏輯益智遊戲：在彩色區域盤面中放置皇后，需同時滿足每列、每行、每個彩色區域各一顆，且皇后互不相鄰（含斜角）。</p>
+      </details>
+      <details>
+        <summary>需要付費或註冊嗎？</summary>
+        <p>不需要。完全免費、無廣告、無追蹤、免註冊、免下載，開啟網頁即可遊玩。</p>
+      </details>
+      <details>
+        <summary>可以離線遊玩嗎？</summary>
+        <p>可以。遊戲 100% 離線，不需要網路權限，進度儲存在瀏覽器本地。</p>
+      </details>
+      <details>
+        <summary>有幾關？</summary>
+        <p>提供 150+ 結構化關卡（5×5 到 16×16），另有程序生成的無限關卡（5×5–9×9）。</p>
+      </details>
+      <details>
+        <summary>授權是什麼？</summary>
+        <p>GNU GPL v3.0。原始碼公開，可自由檢視與改作。</p>
+      </details>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <p>Queens 皇后 — 免費開源 crown-placement 邏輯益智遊戲。原始碼：<a href="https://github.com/sidhant947/Queens" rel="noopener noreferrer">sidhant947/Queens</a>（GPL-3.0）。</p>
+      <p>本站僅供技術示範與娛樂，不涉及真實金錢。</p>
+    </div>
+  </footer>
+</body>
+</html>
+EOF
+echo "GH index.html written"
